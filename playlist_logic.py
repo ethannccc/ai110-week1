@@ -11,13 +11,11 @@ DEFAULT_PROFILE = {
     "include_mixed": True,
 }
 
-
 def normalize_title(title: str) -> str:
     """Normalize a song title for comparisons."""
     if not isinstance(title, str):
         return ""
     return title.strip()
-
 
 def normalize_artist(artist: str) -> str:
     """Normalize an artist name for comparisons."""
@@ -25,35 +23,37 @@ def normalize_artist(artist: str) -> str:
         return ""
     return artist.strip().lower()
 
-
 def normalize_genre(genre: str) -> str:
     """Normalize a genre name for comparisons."""
     return genre.lower().strip()
 
+def normalize_energy(energy: object) -> int:
+    """Normalize energy value to integer."""
+    if isinstance(energy, int):
+        return energy
+    if isinstance(energy, str):
+        try:
+            return int(energy)
+        except ValueError:
+            return 0
+    return 0
+
+def normalize_tags(tags: object) -> List[str]:
+    """Normalize tags to a list of strings."""
+    if isinstance(tags, list):
+        return tags
+    if isinstance(tags, str):
+        return [tags]
+    return []
 
 def normalize_song(raw: Song) -> Song:
     """Return a normalized song dict with expected keys."""
-    title = normalize_title(str(raw.get("title", "")))
-    artist = normalize_artist(str(raw.get("artist", "")))
-    genre = normalize_genre(str(raw.get("genre", "")))
-    energy = raw.get("energy", 0)
-
-    if isinstance(energy, str):
-        try:
-            energy = int(energy)
-        except ValueError:
-            energy = 0
-
-    tags = raw.get("tags", [])
-    if isinstance(tags, str):
-        tags = [tags]
-
     return {
-        "title": title,
-        "artist": artist,
-        "genre": genre,
-        "energy": energy,
-        "tags": tags,
+        "title": normalize_title(str(raw.get("title", ""))),
+        "artist": normalize_artist(str(raw.get("artist", ""))),
+        "genre": normalize_genre(str(raw.get("genre", ""))),
+        "energy": normalize_energy(raw.get("energy", 0)),
+        "tags": normalize_tags(raw.get("tags", [])),
     }
 
 
