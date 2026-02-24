@@ -111,3 +111,9 @@ If you finish early or want an extra challenge, try one of these:
 - Stay curious. The unpredictability is intentional and part of the experience.
 
 When you finish, Playlist Chaos will feel more predictable, and you will have taken your first steps into AI-assisted debugging.
+
+---
+
+## Reflection
+
+Students will already need to have an understanding of the code and be somewhat familiar with Python. Using AI to refactor and debug code is beneficial, but students need to recognize what they're reading to determine if the changes AI is making is valid. They should definitely make sure to ask smaller scope questions to edit small bits of code, since AI tends to misinterpret more broad questions. I feel they will most likely struggle with refactoring code, as there is a lot of ways one can refactor code to improve it, and they may not be familiar with those programming concepts. AI was helpful in effectively debugging the code, though it is integral to make sure you are familiar with the codebase before accepting AI changes as there could be methods from other classes that AI may not have seen or used. One way I'd help students without giving the answer is to ask AI to explain it to them conceptually and give them higher level tips that will engage their thinking. I'd suggest AI prompts that could point them in the right direction.  
